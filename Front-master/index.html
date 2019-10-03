@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+    <title>Contacto</title>
+  </head>
+  <body>
+    
+
+    <div class="container">
+        <h1>Contacto</h1>
+        <div class="row">
+                <form action="" method="POST" id="addContacto">
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" value="" placeholder="Indique su nombre">
+                            </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+
+                            <div class="form-group">
+                                    <label for="telefono">Teléfono:</label>
+                                    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Indique su número de teléfono">
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipo_telefono">Tipo teléfono:</label>
+                                <select name="tipo_telefono" id="tipo_telefono" class="form-control">
+                                    <option value="">Elegir tipo de teléfono</option>
+                                    <option value="movil">Móvil</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="trabajo">Trabajo</option>
+                                    <option value="principal">Principal</option>
+                                    <option value="fax">Fax</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                    <label for="nota">Nota</label>
+                                    <textarea class="form-control" name="nota" id="nota" class="input_form" placeholder="Indique mensaje" rows="4" cols="50"></textarea>
+                            </div>
+                           
+                    </div>
+                    <div class="col-md-12">
+                        <input class="btn btn-lg btn-success" type="submit" value="Enviar">
+                    </div>
+                  </form> 
+        </div>
+        <br>
+        <div class="row">
+            
+                <table class="table" id="tableContact">
+                        <thead>
+                          <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Tipo teléfono</th>
+                            <th>Nota</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                          </tr>
+                        </thead>
+                        <tbody id="dataTable">
+                          
+                        </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div id="ShowUpdateContacto" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Modificar contacto</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                        <form id="formUpdateContacto">
+                                <input type="hidden" id="id_contacto" name="id_contacto"/>
+                                <div class="col-md-12">
+                                        <div class="form-group">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" class="form-control" name="nombre_update" id="nombre_update" value="" placeholder="Indique su nombre">
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+            
+                                        <div class="form-group">
+                                                <label for="telefono">Teléfono:</label>
+                                                <input type="text" class="form-control" name="telefono_update" id="telefono_update" placeholder="Indique su número de teléfono">
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tipo_telefono">Tipo teléfono:</label>
+                                            <select name="tipo_telefono_update" id="tipo_telefono_update" class="form-control">
+                                                <option value="">Elegir tipo de teléfono</option>
+                                                <option value="movil">Móvil</option>
+                                                <option value="casa">Casa</option>
+                                                <option value="trabajo">Trabajo</option>
+                                                <option value="principal">Principal</option>
+                                                <option value="fax">Fax</option>
+                                            </select>
+                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                        <div class="form-group">
+                                                <label for="nota">Nota</label>
+                                                <textarea class="form-control" name="nota_update" id="nota_update" class="input_form" placeholder="Indique mensaje" rows="4" cols="50"></textarea>
+                                        </div>
+                                </div>
+                        
+                </div>
+                <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn" id="btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn btn-warning" id="btnUpdateContacto">Cambiar</button>
+                </div>
+
+                </form>
+              </div>
+          
+            </div>
+    </div>
+
+    <div id="ShowDeleteContacto" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title">Eliminar contacto</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Desea eliminar este registro?</p>
+                  <form id="formDeleteContacto">
+                        <input type="hidden" id="id_contacto_delete" name="id_contacto_delete"/>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn" id="btn-cancel">Cancelar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnDeleteContacto">Eliminar</button>
+                </div>
+              </div>
+          
+            </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Latest compiled and minified CSS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="formValidation.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+
+    $('#addContacto').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                 'nombre': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    }
+                  }
+                },
+                'tipo_telefono': {
+                  validators: {
+                    notEmpty: {
+                      message: 'Debe de seleccionar un tipo de teléfono'
+                    }
+                  }
+                },
+                'telefono': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    },
+                    stringLength: {
+                            min: 10,
+                            message: 'El valor no esta completo'
+                    }
+                  }
+                },
+                'nota': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    }
+                  }
+                }
+              }
+            }).on('success.form.fv', function(e,data) {
+                saveData();
+    });
+
+    $('#formUpdateContacto').formValidation({
+                framework: 'bootstrap',
+                icon: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                 'nombre_update': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    }
+                  }
+                },
+                'tipo_telefono_update': {
+                  validators: {
+                    notEmpty: {
+                      message: 'Debe de seleccionar un tipo de teléfono'
+                    }
+                  }
+                },
+                'telefono_update': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    },
+                    stringLength: {
+                            min: 10,
+                            message: 'El valor no esta completo'
+                    }
+                  }
+                },
+                'nota_update': {
+                  validators: {
+                    notEmpty: {
+                      message: 'El campo no puede quedar vacío'
+                    }
+                  }
+                }
+              }
+            }).on('success.form.fv', function(e,data) {
+                updateContacto();   
+                $('#ShowUpdateContacto').modal('hide');
+    });
+      
+    listData();  
+
+    function saveData(){
+         
+          var param = new FormData($('#addContacto')[0]);
+
+          $.ajax({
+              type: 'POST',
+              url: 'saveData.php',
+              data: param,
+              dataType: 'json',
+              async:true,
+              contentType:false,
+              processData:false,
+              cache:false,
+              success: function(data) {
+                var status = data.status;
+                if(status == 'success'){
+                    swal({title: "Excelente", text: "¡Gracias por comunicarte con nosotros!", type: 
+                        "success"}).then(function(){ 
+                            location.reload();
+                        }
+                    );
+                }else{
+                  swal("Error", "¡Por favor intente de nuevo!", "error");
+                }
+              },
+              error: function(error) {
+                console.log(error);
+                swal("Error", "¡Por favor intente de nuevo!", "error");
+              }
+          });
+      }
+
+    function listData(){
+         
+        $.post("listData.php", function(data) {
+
+          var options = $('#dataTable');
+          options.empty();
+          var datos  = data.data;
+          if (data.status == "success") {
+              var tamano            = datos.length;
+              for(var i = 0; i < tamano; i++){
+                var id = datos[i].id;
+                var nombre = datos[i].nombre;
+                var telefono = datos[i].telefono;
+                var tipo_telefono = datos[i].tipo_telefono;
+                var nota = datos[i].nota;
+
+                options.append('<tr>'+
+                        '<td>'+id+'</td>'+
+                        '<td>'+nombre+'</td>'+
+                      '<td>'+telefono+'</td>'+
+                      '<td>'+tipo_telefono+'</td>'+
+                      '<td>'+nota+'</td>'+
+                      '<td><button type="button" data-toggle="modal" onClick="ShowUpdateContacto(this)" data-idcontacto="'+id+'" data-nombre="'+nombre+'" data-telefono="'+telefono+'" data-nota="'+nota+'" data-tipotelefono="'+tipo_telefono+'"data-target="#ShowUpdateContacto" class="btn btn-warning"><i class="fas fa-pen"></i></button></td>'+
+                      '<td><button type="button" data-toggle="modal" onClick="ShowDeleteContacto(this)" data-idcontacto="'+id+'" data-target="#ShowDeleteContacto" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>'+
+                      '</tr>');
+              }
+          }else{
+            $('#dataTable').append('<tr>'+
+                        '<td>No hay información disponible</td>'+
+                      '</tr>');
+          }
+        });
+     }
+
+    function ShowUpdateContacto(elem){
+        var id_update = $(elem).data("idcontacto");
+        var nombre_update = $(elem).data("nombre");
+        var telefono_update = $(elem).data("telefono");
+        var tipotelefono = $(elem).data("tipotelefono");
+        var nota = $(elem).data("nota");
+        $('#id_contacto').val(id_update);
+        $('#nombre_update').val(nombre_update);
+        $('#telefono_update').val(telefono_update);
+        $('#nota_update').val(nota);
+        $("#tipo_telefono_update").val(tipotelefono).change();
+     }
+
+    function updateContacto(){
+        var dataForm = new FormData($('#formUpdateContacto')[0]);
+         $.ajax({
+             type: 'POST',
+             url: 'updateData.php',
+             data: dataForm,
+             dataType: 'json',
+             async:true,
+             contentType:false,
+             processData:false,
+             cache:false,
+             success: function(data) {
+               var status = data.status;
+               if(status == 'success'){
+                 swal({title: "Excelente", text: "¡Registro modificado exitosamente!", type: 
+                        "success"}).then(function(){ 
+                            location.reload();
+                 });
+               }else{
+                 swal("Error", "¡Por favor intente de nuevo!", "error");
+               }
+             },
+             error: function(error) {
+               console.log(error);
+               swal("Error", "¡Por favor intente de nuevo!", "error");
+             }
+         });
+     }
+     
+     function ShowDeleteContacto(elem){
+        var id_delete = $(elem).data("idcontacto");
+        $('#id_contacto_delete').val(id_delete);
+     } 
+    
+     $('#btnDeleteContacto').click( function() {
+        deleteContacto();
+    });
+    
+    function deleteContacto(){
+        var dataForm = new FormData($('#formDeleteContacto')[0]);
+         $.ajax({
+             type: 'POST',
+             url: 'deleteData.php',
+             data: dataForm,
+             dataType: 'json',
+             async:true,
+             contentType:false,
+             processData:false,
+             cache:false,
+             success: function(data) {
+               var status = data.status;
+               if(status == 'success'){
+                    swal({title: "Excelente", text: "¡Registro borrado exitosamente!", type: 
+                        "success"}).then(function(){ 
+                            location.reload();
+                        }
+                    ); 
+               }else{
+                 swal("Error", "¡Por favor intente de nuevo!", "error");
+               }
+             },
+             error: function(error) {
+               console.log(error);
+               swal("Error", "¡Por favor intente de nuevo!", "error");
+             }
+         });
+     }
+    
+    </script>
+  </body>
+</html>
